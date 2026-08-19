@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+
+    <!-- ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+</head>
+<body>
+    <div class="preload" data-preload>
+        <div class="circle"></div>
+        <p class="text">Aluha</p>
+    </div>
+
+    <!-- Topbar -->
+    <section class="topbar">
+        <div class="topbar-content">
+
+            <address class="topbar-item">
+                <div class="icon">
+                    <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <span class="span">Bělohorská 245/71, 169 00 Praha 6</span>
+            </address>
+
+            <div class="separator"></div>
+
+            <div class="topbar-item item-2">
+                <div class="icon">
+                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <span class="span">Daily: 10:30 AM - 22:00 PM</span>
+            </div>
+
+            <a href="tel:+1234567890" class="topbar-item link">
+                <div class="icon">
+                    <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <span class="span">+420 770 620 234</span>
+            </a>
+
+            <div class="separator"></div>
+
+            <a href="mailto:info@restaurant.com" class="topbar-item link">
+                <div class="icon">
+                    <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <span class="span">info@restaurant.com</span>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Header -->
+    <header class="header">
+        <span class="logo">
+            <img src="Aluha.png" alt="Aluha-home">
+        </span>
+
+        <nav class="navbar hover-underline">
+            <a href="#home" style="--i:1">Home</a> <!--class="active"-->
+            <a href="#about" style="--i:2">About us</a>
+            <a href="#menu" style="--i:3">Menu</a>
+            <a href="#" style="--i:4">Our Staff</a>
+            <a href="#contact" style="--i:5">Contact</a>
+        </nav>
+
+        <button onclick="location.href='https://aluha.cz/booking'" class="btn-box" id="reservation"><span data-text="Find your table">Find your table</span></button>
+
+       <!-- <nav class="menu">
+            <div class="menu-nav">
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="menu-list">
+                <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+                <li><a href="#" onclick="toggleMenu()">Portfolio</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </ul>
+        </div>
+        </nav>-->
+    </header>
+    <article>
+        <section class="home" id="home">
+            <ul class="home-slider" data-hero-slider>
+                <li class="slider-item active" data-hero-slider-item>
+                    <div class="slider-bg">
+                        <img src="Main Pic.jpg" alt="" class="img-cover">
+                    </div>
+                    <p class="home1-subtitle slider-reveal">Traditional cousine</p>
+                    <h1 class="home1-title slider-reveal">For the love of <br>delicious food</h1>
+                    <p class="home1-text slider-reveal">Come with family & feel the joy of mouthwatering food</p>
+                </li>
+                <li class="slider-item" data-hero-slider-item>
+                    <div class="slider-bg">
+                        <img src="Main Pic2.jpg" alt="" class="img-cover">
+                    </div>
+                    <p class="home1-subtitle slider-reveal">Delightful experience</p>
+                    <h1 class="home1-title slider-reveal">Flavors Inspired by <br>the Seasons</h1>
+                    <p class="home1-text slider-reveal">Come with family & feel the joy of mouthwatering food</p>
+                </li>
+                <li class="slider-item" data-hero-slider-item>
+                    <div class="slider-bg">
+                        <img src="Main Pic3.jpg" alt="" class="img-cover">
+                    </div>
+                    <p class="home1-subtitle slider-reveal">Clean & Beautiful</p>
+                    <h1 class="home1-title slider-reveal">Peaceful atmosphere for <br>clear design</h1>
+                    <p class="home1-text slider-reveal">Come with family & feel the joy of mouthwatering food</p>
+                </li>
+            </ul>
+            <button onclick="location.href='https://aluha.cz/section:menu/starters'" class="btn-box" id="view-menu"><span data-text="View menu">View menu</span></button>
+        </section>
+        <section class="about" id="about">
+            <div class="about-content">
+                <h2 class="about-title">Our Story</h2>
+                <p class="about-subtitle">Aluha (Ăn ngay đi) - Dig in</p>
+                <div class="about-textblock" motion data-motion-speed="4">
+                    <p class="about-text">
+                        Back in September 2022, we took a leap of faith and welcomed our first customers with a smile with a goal: to share our love for great food and bring something fresh to the neighborhood.
+                    </p><hr class="about-divider">
+                    <p class="about-text">
+                        Since then, our crew has grown little by little. We're a family of chefs crafting bold Asian fusion dishes, waiters and waitresses making sure every guest feels completely looked after, and baristas pouring care into every cup. We genuinely enjoy working together, laughing through the rush, and creating a space where everyone feels at home.
+                    </p><hr class="about-divider">
+                    <p class="about-text">
+                        Our menu is a reflection of that energy—a vibrant mix of Asian fusion dishes that blend traditional flavors with modern creativity—flavors that remind us of our hometown. Every plate we send out is something we're proud of, crafted with care and a lot of heart.
+                    </p><hr class="about-divider">
+                    <p class="about-text">
+                        We love what we do, and we're so grateful for the community and familiar faces that have grown right alongside us. <span>Pull up a chair and become a part of the table!</span>
+                    </p>
+                </div>
+            </div>
+            <figure class="about-banner">
+                <img src="about.jpg" alt="about banner" loading="lazy" id="banner" motion data-motion-speed="4">
+                <p class="hashtag">#TeamAluha, #LetsGoAluha</p>
+                <div class="about-badge-wrapper" aria-label="Since 2022 badge" id="badge" motion data-motion-speed="4">
+                    <div class="about-badge">
+                        <div class="about-badge-ring">
+                            <div class="about-badge-inner">
+                                <span class="about-badge-top">SINCE</span>
+                                <span class="about-badge-year">2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <svg viewBox="0 0 100 100" class="about-badge-svg">
+                        <defs>
+                            <path id="circle" d="M 50, 50 m -37.5,0 a 37.5,37.5 0 1,1 75,0 a 37.5,37.5 0 1,1 -75,0 "/><!--Ring size-->
+                        </defs>
+                        <text class="badge-ring-text" font-size="9.4" font-family="'Forum', sans-serif" >
+                            <textPath href="#circle" startOffset="50%" text-anchor="middle">Professional services • Fresh ingredients •</textPath>
+                        </text>
+                    </svg>
+                </div>
+            </figure>
+        </section>
+        <section class="menu" id="menu">
+            <h2 class="menu-title">Our Menu</h2>
+            <p class="menu-subtitle">What can we Offer</p>
+            <div class="foods">
+                <div class="foods-banner" id="sushi-banner">
+                    <object type="image/svg+xml" data="banner-decoration.svg" class="img-decor"></object>
+                    <div class="img-container">
+                        <img src="dragon.png" alt="sushi">
+                    </div>
+                    <h2 class="title">Sushi</h2>
+                    <button onclick="location.href='https://aluha.cz/section:sushi-menu/maki'" class="btn-box" id="view-sushi"><span data-text="View Sushi">View Sushi</span></button>
+                </div>
+                <div class="foods-banner" id="speciality-banner">
+                    <object type="image/svg+xml" data="banner-decoration.svg" class="img-decor"></object>
+                    <div class="img-container">
+                        <img src="hoi-an.png" alt="speciality">
+                    </div>
+                    <h2 class="title">Speciality</h2>
+                    <button onclick="location.href='https://aluha.cz/section:menu/aluha-specials'" class="btn-box" id="view-speciality"><span data-text="View Speciality">View Speciality</span></button>
+                </div>
+                <div class="foods-banner" id="deserts-banner">
+                    <object type="image/svg+xml" data="banner-decoration.svg" class="img-decor"></object>
+                    <div class="img-container">
+                        <img src="mango-rice.png" alt="deserts">
+                    </div>
+                    <h2 class="title">Deserts</h2>
+                    <button onclick="location.href='https://aluha.cz/section:menu/dezert'" class="btn-box" id="view-deserts"><span data-text="View Deserts">View Deserts</span></button>
+                </div>
+            </div>  
+        </section>
+        <section class="contact" id="contact">
+            <h2 class="contact-title">Our Contacts</h2>
+            <div class="contact-us">
+                <div class="how">
+                    <object type="image/svg+xml" data="banner-decoration.svg" class="box-decor"></object>
+                    <h1 class="contact-text">Location</h1>
+                    <p2>Bělohorská 245/71, 169 00 Praha 6</p2>
+                        <hr class="about-divider">
+                    <h1 class="contact-text">Contact Us</h1>
+                    <p2>+420 770 620 234</p2>
+                        <hr class="about-divider">
+                    <h1 class="contact-text">Opening Hours</h1>
+                    <p>Monday<span> 10:30 - 22:00</span></p>
+                    <p>Tuesday<span> 10:30 - 22:00</span></p>
+                    <p>Wednesday<span> 10:30 - 22:00</span></p>
+                    <p>Thursday<span> 10:30 - 22:00</span></p>
+                    <p>Friday<span> 10:30 - 22:00</span></p>
+                    <p>Saturday<span> 10:30 - 22:00</span></p>
+                    <p>Sunday<span> 10:30 - 22:00</span></p>
+                </div>
+                <div class="where">
+                    <h1 class="contact-text">Where to find us</h1>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2560.1329836271816!2d14.367802676910438!3d50.08379701369545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b95a867b82d8b%3A0x6f697e2edc31347c!2sAluha%20Restaurace!5e0!3m2!1scs!2scz!4v1786914650958!5m2!1scs!2scz" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+        </section>
+    </article>
+    <script src="script.js"></script>
+</body>
+</html>

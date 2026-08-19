@@ -1,0 +1,1084 @@
+/*:root {
+    --loading-text-gradient: linear-gradient(90deg, goldenrod 0%, black 50%, goldenrod 100%);
+    --transition-1: 250ms ease-in-out;
+    --transition-2: 500ms ease-in-out;
+    --weight-bold: 700;  
+}*/
+* {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    caret-color: transparent !important;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 0;
+}
+
+section[id] {
+    scroll-margin-top: 0;
+}
+
+@font-face {
+  font-family: "Aluha Exact";
+  src: url("./fonts/AluhaExact_v4.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a, img, data, span, input, button, select, ion-icon, textarea {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    height: auto;
+}
+
+input, button, select, textarea {
+    background: none;
+    border: none;
+    font: inherit;
+}
+
+input, select, textarea {
+    outline: none;
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+address {
+    font-style: normal;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth; 
+}
+
+body {
+    background-color: gray;
+    color: white;
+    overflow: hidden;
+    height: 300vh;
+}
+
+body.loaded {
+    overflow: overlay;
+}
+
+body.nav-active {
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: goldenrod;
+}
+
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*------PRELOAD------*/
+
+.preload {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: black;
+    z-index: 9999;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    transition: 500ms ease;
+}
+
+.preload > * { transition: 250ms ease; }
+
+.preload.loaded > * { opacity: 0; }
+
+.preload.loaded {
+    transition-delay: 250ms;
+    transform: translateY(100%);
+}
+
+.circle {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    border: 3px solid white;
+    border-block-start-color: goldenrod;
+    margin-block-end: 45px;
+    animation: rotate360 linear 1s infinite;
+}
+
+@keyframes rotate360 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.preload .text {    
+    background-image: linear-gradient(90deg, transparent 0% 16.66%, goldenrod 33.33% 50%, transparent 66.66% 75%);
+    background-size: 500%;
+    font-size: calc(2rem + 3vw);
+    font-weight: 700;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 16px;
+    padding-inline-start: 16px;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+     text-shadow: none;
+    -webkit-text-stroke: 0;
+    font-family: "Aluha Exact", sans-serif;
+    animation: loading-text linear 2s infinite;
+}
+
+@keyframes loading-text {
+    0% { background-position: 100%; }
+    100% { background-position: 0%; }
+}
+
+/*-----TOPBAR-----*/
+
+.topbar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    border-block-end: 1px solid white;
+    z-index: 4;
+    transition: transform 250ms ease, opacity 250ms ease;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.topbar.is-hidden {
+    transform: translateY(-120%);
+    opacity: 0;
+}
+
+.topbar-item:not(.link) {
+    display: flex;
+}
+
+.topbar-item.item-2 {
+    margin-inline-end: auto;
+}
+
+.topbar-content,
+.topbar-item{
+    display: flex;
+    align-items: center;
+}
+
+.topbar-content{
+    justify-content: center;
+    gap: 30px;
+}
+
+.topbar-item {
+    gap: 6px;
+}
+
+.topbar-item ion-icon {
+    --ionicon-stroke-width: 60px;
+}
+
+.topbar-item .span {
+    font-size: 1.4rem;
+}
+
+.topbar-content a {
+    color: white;
+    transition: 250ms ease;
+}
+
+.topbar-content a:hover {
+    color: goldenrod;
+}
+
+/* Header Styles */
+
+.header {
+    position: fixed;
+    top: 37px;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    min-height: 72px;
+    padding: 0 2%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-block-end: 1px solid transparent;
+    z-index: 4;
+    transition: transform 250ms ease, opacity 250ms ease, background-color 250ms ease, box-shadow 250ms ease, top 250ms ease;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.header.is-hidden {
+    transform: translateY(-120%);
+    opacity: 0;
+}
+
+.header.nav-visible {
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border-block-end-color: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 1);
+}
+
+.header #reservation {
+    position: relative;
+    display: inline-block;
+    top: -10px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
+.logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: auto;
+    transform: translateY(0);
+    line-height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.logo img {
+    display: block;
+    width: 150px;
+    height: auto;
+    max-width: 100%;
+    filter: brightness(0) invert(1);
+}
+
+.navbar {
+    position: absolute;
+    left: 48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.4rem;
+    margin-left: auto;
+    transform: translateY(0);
+    margin: 0;
+    padding: 0 14px;
+}
+
+.navbar a {
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    color: white;
+    transition: 250ms ease;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 0;
+}
+
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: goldenrod;
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: transform 250ms ease, opacity 250ms ease;
+}
+
+.navbar a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 100%;
+    height: 1px;
+    background: goldenrod;
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: transform 250ms ease, opacity 250ms ease;
+}
+
+.navbar a:hover,
+.navbar a:focus-visible {
+    color: goldenrod;
+}
+
+.navbar a:hover::after,
+.navbar a:hover::before,
+.navbar a:focus-visible::after {
+    transform: scaleX(1);
+    opacity: 1;
+}
+
+.home {
+    position: relative;
+    padding-block: 120px;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.home .slider-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 5%;
+    opacity: 0;
+    visibility: hidden;
+    transition: 1000ms;
+    z-index: 2;
+}
+
+.home #view-menu{
+    z-index: 50;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    font-size: 15px;
+}
+
+.home .slider-item.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.home .slider-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.15);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.home .slider-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.home .slider-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.home .slider-item.active .slider-bg {
+  animation: smoothScale 13s linear forwards;
+}
+
+@keyframes smoothScale {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+.home1-subtitle {
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: goldenrod;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.home1-subtitle::after {
+  margin-block: 14px 20px;
+}
+
+.home1-title {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+  font-family: 'Forum', serif;
+}
+
+.home1-text {
+  font-size: 1.8rem;
+  color: white;
+  margin-block: 30px 40px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.slider-reveal {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.home .slider-item.active .slider-reveal {
+  animation: sliderReveal 3s ease forwards;
+}
+
+@keyframes sliderReveal {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(50px);
+    opacity: 1;
+  }
+}
+
+.home .slider-item.active .home1-subtitle { animation-delay: 800ms; }
+
+.home .slider-item.active .home1-title { animation-delay: 1600ms; }
+
+.home .slider-item.active .home1-text { animation-delay: 2.4s; }
+
+.about {
+    text-align: left;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.7rem; /* Adjusted slightly from 4rem */
+    align-items: center;
+    background-color: black;
+    position: relative;
+    padding: 90px 9%; /* Adjusted proportionally */
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.about-banner {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.about-banner #banner {
+    width: 100%;
+    max-width: 560px; /* Adjusted from 600px */
+    height: auto;
+    border-radius: 14px; /* Adjusted from 15px */
+    background: goldenrod;
+    padding: 3px;
+    box-shadow: 0 10px 25px rgba(218, 165, 32, 0.05); 
+}
+
+.about-badge-wrapper {
+    position: absolute;
+    right: -37px; /* Adjusted from -40px */
+    top: -37px;  /* Adjusted from -40px */
+    width: 84px;  /* Adjusted from 90px */
+    height: 84px; /* Adjusted from 90px */
+    z-index: 3;
+}
+
+/* Ensure transitions are present so elements glide smoothly back on mouseleave */
+.about-banner #banner,
+.about-badge-wrapper,
+.about-content {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+.about-badge {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+/* The SVG text layer overlaid perfectly over the badge */
+.about-badge-svg {
+    position: absolute;
+    inset: -20px;   /* Adjusted position of the ring */
+    width: 124px;   /* Adjusted from 134px */
+    height: 124px;  /* Adjusted from 134px */
+    pointer-events: none;
+    transform-origin: center;
+}
+
+/* Styling for the badge ring and inner content */
+.about-badge-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(8, 8, 8, 0.9);
+    border: 2px solid rgba(212, 170, 89, 0.9);
+    box-shadow: 0 0 0 7.5px rgba(255, 255, 255, 0.03); 
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    } 
+}
+
+/* Styling for the SVG circular text */
+.badge-ring-text {
+    fill: goldenrod;
+    font-weight: 600;           /* Makes it bold */
+    text-transform: uppercase; /* Forces all caps */
+    letter-spacing: 1px;
+    animation: rotate 20s linear infinite;
+    transform-origin: 50% 50%;
+}
+
+.about-badge-ring::before {
+    content: "";
+    position: absolute;
+    inset: 7.5px; /* Adjusted from 8px */
+    border-radius: 50%;
+    border: 1px solid rgba(212, 170, 89, 0.5);
+}
+
+.about-badge-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5px; /* Adjusted from 4px */
+    color: #f5f1ea;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Forum', serif;
+    text-align: center;
+}
+
+.about-badge-top {
+    font-size: 9.5px; /* Adjusted from 10px */
+    opacity: 0.8;
+}
+
+.about-badge-year {
+    font-size: 18px; /* Adjusted from 20px */
+    line-height: 1;
+    font-weight: 700;
+}
+
+.about-title {
+    font-size: 28px; /* Adjusted from 30px */
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 18px; /* Adjusted from 20px */
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+    font-family: 'Forum', serif;
+}
+
+.about-subtitle {
+    font-size: 23px; /* Adjusted from 25px */
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: goldenrod;
+    margin-bottom: 18px; /* Adjusted from 20px */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.about-text {
+    font-size: 14px; /* Adjusted from 15px */
+    color: white;
+    margin-bottom: 18px; /* Adjusted from 20px */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.about-text span {
+    display: block;
+    color: goldenrod;
+    font-size: 16px; /* Adjusted from 17px */
+}
+
+.hashtag {
+    text-align: center;
+    font-size: 15px; /* Adjusted from 16px */
+    margin-top: 14px; /* Adjusted from 15px */
+}
+
+.about-divider {
+    border: none;
+    height: 1px;
+    background-color: goldenrod;
+    width: 100%; /* Makes the line stretch all the way across */
+    margin: 28px auto; /* Adjusted from 30px */
+    box-shadow: 0 0 8px rgba(218, 165, 32, 0.5);
+}
+
+/* Give the very last paragraph a bit more space before a button or section end if needed */
+.about-text:last-of-type {
+    margin-bottom: 37px; /* Adjusted from 40px */
+}
+
+.menu {
+    background-image: url(shape-5.png);
+    text-align: center;
+    display: grid;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: relative;
+    padding: 70px 5% 70px 5%; /* Scaled down proportionally */
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.menu-title {
+    font-size: 22px; /* Scaled down from 30px */
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 15px;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+    font-family: 'Forum', serif;
+}
+
+.menu-subtitle {
+    font-size: 18px; /* Scaled down from 25px */
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: goldenrod;
+    margin-bottom: 60px; /* Scaled down from 100px */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.foods {
+    justify-content: center;
+    align-items: center;
+    gap: 80px; /* Scaled down from 120px */
+    display: flex;
+    width: 100%;
+    max-width: 650px; /* Scaled down from 900px */
+    margin: 0 auto;
+}
+
+/* Style for each banner item */
+.foods > div {
+    flex: 1; /* Makes them share the available width equally */
+    position: relative; /* Required to anchor the shine overlay */
+}
+
+.img-decor {
+    position: absolute;
+    top: 38%;      /* Adjust to offset/shift the decor vertically */
+    left: 50%;    /* Adjust to offset/shift the decor horizontally */
+    transform: translate(-50%, -50%) scaleY(1.15);
+    width: 130px; /* Scaled down from 180px */
+    height: 310px;  /* Scaled down from 440px */
+    z-index: 1;     /* Sits under the image */
+    pointer-events: none; /* Prevents it from blocking clicks */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When hovering the button inside a card, flip its specific SVG decor */
+.foods > div:has(.btn-box:hover) .img-decor {
+    transform: translate(-50%, -48%) scaleY(1.20) rotateY(360deg);
+}
+
+.foods img {
+    position: relative;
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 285px; /* Scaled down from 400px */
+    border-radius: 5px;
+    border: 2px solid rgba(212, 170, 89, 0.9);
+    box-shadow: 0 10px 25px rgba(218, 165, 32, 0.05); 
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
+
+/* --- THE STRICT SHINE WINDOW --- */
+.foods > div::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 285px; /* Matches the scaled image height strictly */
+    border-radius: 5px;
+    overflow: hidden; 
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* --- THE MOVING BLADE --- */
+.foods > div::after {
+    background: linear-gradient(
+        -130deg,
+        transparent 0%,
+        transparent 48%,
+        rgba(255, 255, 255, 0.75) 50%,
+        transparent 52%,
+        transparent 100%
+    );
+    background-size: 500% 500%;
+    background-repeat: no-repeat;
+    background-position: -200% -200%;
+    animation: food-shine 5s infinite ease-in-out;
+}
+
+@keyframes food-shine {
+    0% {
+        background-position: -200% -200%;
+    }
+    35% {
+        background-position: 300% 300%;
+    }
+    100% {
+        background-position: 300% 300%;
+    }
+}
+
+.foods h2 {
+    letter-spacing: 4px;
+    position: relative;
+    z-index: 2;
+    font-size: 14px; /* Scaled down from 20px */
+    text-align: center;
+    font-weight: 700;
+    line-height: 2.5;
+    color: white;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+    font-family: 'Forum', sans-serif;
+    transition: transform 0.4s ease-in-out;
+}
+
+.foods > div:has(.btn-box:hover) .title {
+    transform: translate(0%, 20%) scaleY(1.20);
+}
+
+/* View buttons */
+.btn-box {
+    cursor: pointer !important;
+    position: relative;
+    margin-top: 20px; /* Scaled down from 30px */
+    padding: 8px 40px; /* Scaled down from 12px 60px */
+    border-radius: 3px;
+    border: 2px solid rgba(212, 170, 89, 0.9);
+
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    outline: none;
+    overflow: hidden; 
+
+    font-family: 'Forum';
+    font-weight: 800;
+    font-size: 9px; /* Scaled down from 10px */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+
+    background-color: transparent;
+    background-image: linear-gradient(to top, goldenrod 0%, goldenrod 100%);
+    background-position: bottom;
+    background-size: 100% 0%;
+    background-repeat: no-repeat;
+    
+    transition: background-size 0.4s ease;
+}
+
+/* --- THE HOVER EFFECT --- */
+.btn-box:hover {
+    background-size: 100% 100%;
+}
+
+/* --- THE TEXT ANIMATION --- */
+.btn-box span {
+    display: inline-block;
+    color: goldenrod;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.btn-box span::after {
+    content: attr(data-text); 
+    position: absolute;
+    left: 0;
+    top: 1000%; 
+    width: 100%;
+    color: black; 
+}
+
+.btn-box:hover span {
+    transform: translateY(-1000%); 
+}
+
+/* --- IMAGE HOVER ANIMATION --- */
+.foods-banner img {
+    transition: transform 0.4s ease-in-out;
+}
+
+.foods > div:has(.btn-box:hover) img {
+    transform: scale(1.05) rotateY(-360deg) translateY(-6px); /* Scaled translation matching size */
+}
+
+.foods button {
+    text-align: center;
+    display: block;            
+    width: fit-content;        
+    margin-left: auto;          
+    margin-right: auto;         
+}
+
+/* --- Contact section --- */
+.contact {
+    background-image: url(footer-form-bg.png);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.contact-title {
+    padding-top: 20px;
+    font-size: 21px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+    font-family: 'Forum', serif;
+}
+
+.contact-us {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.contact-us .how,
+.contact-us .where {
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.contact-us .how {
+    position: relative; /* Creates a positioning context */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden; /* Keeps the decoration locked inside rounded corners */
+}
+
+.contact-us .how::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;            
+    width: 150%;            
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    
+    will-change: transform;
+    
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 255, 255, 0.6) 50%,
+        transparent 60%,
+        transparent 100%
+    );
+    
+    /* Total duration for one full cycle (sweep + pause) */
+    animation: box-shine 4s infinite linear;
+}
+
+@keyframes box-shine {
+    0% {
+        transform: translateX(0%);      /* Starts off-screen left */
+    }
+    10% {
+        transform: translateX(200%);    /* Finishes sweeping across to the right (takes 40% of the 6s = 2.4s) */
+    }
+    100% {
+        transform: translateX(200%);    /* Stays parked off-screen (creates a pause for the remaining 60% = 3.6s) */
+    }
+}
+
+.contact-us .box-decor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;   /* Forces the object to take full width */
+    height: 100% !important;  /* Forces the object to take full height */
+    z-index: 1;               /* Sits behind your text */
+    pointer-events: none;    /* Ensures clicks pass right through it */
+}
+
+/* Keep your text above the decoration */
+.contact-us .how p,
+.contact-us .how hr,
+.contact-us .how p2,
+.contact-us .how h1 {
+    position: relative;
+    z-index: 1;
+}
+
+.box-decor {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the SVG fills the area nicely without distorting */
+    border-radius: 3%;
+    display: block; /* Matches your image height */
+    z-index: 2;    /* Sits under the image */
+    pointer-events: none; /* Prevents it from blocking clicks */
+}
+
+.contact-text {
+    width: 100%;
+    margin: 7px 0;
+    text-align: center;
+}
+
+.how p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;           /* Controls how wide the row stretches across the box */
+    max-width: 280px;     /* Keeps it from getting too wide */
+    margin: 6px auto;     /* Centers the whole row block inside the orange container */
+    white-space: nowrap;
+    font-size: 14px;
+    font-family: 'Forum';
+    font-weight: 580;
+}
+
+.how p2 {
+    font-size: 14px;
+    font-family: 'Forum';
+    font-weight: 580;
+}
+
+.how p span {
+    font-weight: 580;  /* Keeps the hours regular weight */
+}
+
+.contact-us h1 {
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: goldenrod;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    font-weight: 800;
+    padding-bottom: 18px;
+}
+
+.contact-us .where {
+    background-color: rgba(0, 0, 0, 0.7); /* Keeps your orange base intact */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url("Main Pic2.jpg"); /* Or "Main/Pic2.jpg" depending on your folder structure */
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay; /* Blends the tint nicely with the image */
+    width: 490px;
+    min-height: 350px;
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-us iframe {
+    width: 420px;
+    height: 315px;
+    border: 3px solid rgba(212, 170, 89, 0.9);
+    border-radius: 5%;
+    opacity: 0.7;
+    transition: 1s ease;
+}
+
+iframe:hover {
+    transform: scale(1.05);
+    opacity: 1;
+}
