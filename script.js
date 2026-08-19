@@ -79,16 +79,25 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!banner) return;
 
   const parallaxItems = document.querySelectorAll("[motion]");
-
-  // Cache the rect initially and update it on resize/scroll
+  
+  // Initialize rect, but update it once the window is fully loaded
   let rect = banner.getBoundingClientRect();
 
+  window.addEventListener("load", () => {
+    rect = banner.getBoundingClientRect();
+  });
+  
   window.addEventListener("resize", () => {
     rect = banner.getBoundingClientRect();
   });
 
   window.addEventListener("mousemove", function (event) {
-    // Check if mouse is inside the banner boundary
+    // Safety check: if rect width/height is 0, skip to avoid breaking math
+    if (rect.width === 0 || rect.height === 0) {
+      rect = banner.getBoundingClientRect();
+      return;
+    }
+
     const isInside = 
       event.clientX >= rect.left &&
       event.clientX <= rect.right &&
@@ -96,12 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
       event.clientY <= rect.bottom;
 
     if (!isInside) {
-      // Smoothly reset if mouse is outside the figure
       resetParallax();
       return;
     }
 
-    // Calculate mouse position relative to center (-1 to 1)
     let mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     let mouseY = ((event.clientY - rect.top) / rect.height) * 2 - 1;
 
