@@ -79,23 +79,22 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!banner) return;
 
   const parallaxItems = document.querySelectorAll("[motion]");
-  
-  // Initialize rect, but update it once the window is fully loaded
   let rect = banner.getBoundingClientRect();
 
-  window.addEventListener("load", () => {
+  // Function to safely update dimensions
+  function updateRect() {
     rect = banner.getBoundingClientRect();
-  });
-  
-  window.addEventListener("resize", () => {
-    rect = banner.getBoundingClientRect();
-  });
+  }
+
+  // Check periodically or on load until dimensions are valid
+  window.addEventListener("load", updateRect);
+  window.addEventListener("resize", updateRect);
 
   window.addEventListener("mousemove", function (event) {
-    // Safety check: if rect width/height is 0, skip to avoid breaking math
+    // If width/height is still 0, try fetching it right now
     if (rect.width === 0 || rect.height === 0) {
-      rect = banner.getBoundingClientRect();
-      return;
+      updateRect();
+      if (rect.width === 0) return; // Exit if still not ready
     }
 
     const isInside = 
