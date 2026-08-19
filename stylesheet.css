@@ -19,6 +19,11 @@ section[id] {
     scroll-margin-top: 0;
 }
 
+.site-content {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
 @font-face {
   font-family: "Aluha Exact";
   src: url("./fonts/AluhaExact_v4.woff2") format("woff2");
@@ -74,7 +79,7 @@ html {
 }
 
 body {
-    background-color: gray;
+    background-color: black;
     color: white;
     overflow: hidden;
     height: 300vh;
@@ -234,7 +239,7 @@ body.nav-active {
 
 .header {
     position: fixed;
-    top: 37px;
+    top: 0;
     left: 0;
     width: 100%;
     height: 72px;
@@ -245,10 +250,11 @@ body.nav-active {
     justify-content: space-between;
     align-items: center;
     border-block-end: 1px solid transparent;
-    z-index: 4;
-    transition: transform 250ms ease, opacity 250ms ease, background-color 250ms ease, box-shadow 250ms ease, top 250ms ease;
-    transform: translateY(0);
+    z-index: 100;
+    transition: transform 250ms ease, opacity 250ms ease, background-color 250ms ease, box-shadow 250ms ease;
+    transform: translateY(37px);
     opacity: 1;
+    will-change: transform, opacity;
 }
 
 .header.is-hidden {
@@ -257,9 +263,10 @@ body.nav-active {
 }
 
 .header.nav-visible {
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
+    transform: translateY(0); /* Snap back to the top smoothly */
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px); /* Safari support */
     border-block-end-color: rgba(0, 0, 0, 0.75);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 1);
 }
@@ -502,7 +509,6 @@ body.nav-active {
     grid-template-columns: repeat(2, 1fr);
     gap: 3.7rem; /* Adjusted slightly from 4rem */
     align-items: center;
-    background-color: black;
     position: relative;
     padding: 90px 9%; /* Adjusted proportionally */
     width: 100%;
