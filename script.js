@@ -20,7 +20,6 @@ const toggleHeaderOnScroll = function () {
   if (currentScrollY <= 0) {
     topbar.classList.remove('is-hidden');
     header.classList.remove('is-hidden', 'nav-visible');
-    header.style.top = '37px';
     lastScrollY = currentScrollY;
     return;
   }
@@ -33,11 +32,6 @@ const toggleHeaderOnScroll = function () {
     topbar.classList.add('is-hidden');
     header.classList.remove('is-hidden');
     header.classList.add('nav-visible');
-    header.style.top = '0';
-  }
-
-  if (currentScrollY < lastScrollY) {
-    header.style.top = '0';
   }
 
   lastScrollY = currentScrollY;
@@ -86,9 +80,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const parallaxItems = document.querySelectorAll("[motion]");
 
-  window.addEventListener("mousemove", function (event) {
-    const rect = banner.getBoundingClientRect();
+  // Cache the rect initially and update it on resize/scroll
+  let rect = banner.getBoundingClientRect();
 
+  window.addEventListener("resize", () => {
+    rect = banner.getBoundingClientRect();
+  });
+
+  window.addEventListener("mousemove", function (event) {
     // Check if mouse is inside the banner boundary
     const isInside = 
       event.clientX >= rect.left &&
@@ -108,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (let i = 0, len = parallaxItems.length; i < len; i++) {
       const speed = Number(parallaxItems[i].dataset.motionSpeed) || 10;
-      
       const itemX = mouseX * speed;
       const itemY = mouseY * speed;
 
